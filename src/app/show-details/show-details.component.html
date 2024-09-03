@@ -1,0 +1,31 @@
+<!-- <p>show-details works!</p> -->
+<div
+  class="show-details-bg"
+  [style.background-image]="'url(' + show.bgImageUrl + ')'"
+>
+  <div class="show-detail">
+    <div class="details">
+      <h2>{{ show.title }}</h2>
+      <p>{{ show.description }}</p>
+      <div class="Show-Action">
+        <button class="Show-details-btn">
+          <i class="fa-solid fa-play fa-icon"></i>Play
+        </button>
+        <button class="Show-details-btn">
+          <i class="fa-solid fa-plus fa-icon"></i>My List
+        </button>
+      </div>
+
+      <!-- <i class="fa-solid fa-play"></i> -->
+    </div>
+  </div>
+</div>
+
+<!-- <div className="Show-Action">
+              <button className="Show-details-btn">
+                <FaPlay className="fa-icon"></FaPlay>Play
+              </button>
+              <button className="Show-details-btn">
+                <FaPlus className="fa-icon"></FaPlus>My List
+              </button>
+            </div> -->
