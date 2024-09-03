@@ -6,10 +6,10 @@
       *ngFor="let show of showList"
       class="img_div"
       (click)="selectShow(show)"
-       (mouseover)="openDialog(show)"
+       (mouseenter)="openMovieDialog(show)"
     >
       <img src="{{ show.imageUrl }}" alt="{{ show.title }}" class="img_show" />
     </div>
   </div>
 </div>
- <app-show-dialog ></app-show-dialog>
+ <app-show-dialog [show]="modalShow"></app-show-dialog>

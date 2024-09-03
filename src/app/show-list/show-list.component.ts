@@ -13,11 +13,8 @@ import $ from 'jquery';
   templateUrl: './show-list.component.html',
   styleUrl: './show-list.component.css',
   providers: [HttpClient],
-  
 })
 export class ShowListComponent {
-  @ViewChild(ShowDialogComponent) showDialogComponent!: ShowDialogComponent;
-
   // Add a new property for the modal content
   modalShow: any = null;
 
@@ -243,10 +240,15 @@ export class ShowListComponent {
     this.selectedShow = this.showList[0]; // initialize with the first show
   }
 
-  openDialog(show: any) {
-    this.modalShow = show; // Set the show data specifically for the modal
-    this.showDialogComponent.openModal(this.modalShow); // Pass the data to the modal
+  openMovieDialog(show: any) {
+    setTimeout(() => {
+      this.modalShow = show;
+      setTimeout(() => {
+        ($('#showModal') as any).modal('show');
+      }, 500); // 500ms delay
+    }, 500); // 500ms delay
   }
+
   constructor() {}
 }
 
