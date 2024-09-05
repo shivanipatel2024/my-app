@@ -1,12 +1,12 @@
 <!-- <p>show-details works!</p> -->
 <div
   class="show-details-bg"
-  [style.background-image]="'url(' + show.bgImageUrl + ')'"
+  [style.background-image]="'url(' + show?.bgImageUrl + ')'"
 >
   <div class="show-detail">
     <div class="details">
-      <h2>{{ show.title }}</h2>
-      <p>{{ show.description }}</p>
+      <h2>{{ show?.title }}</h2>
+      <p>{{ show?.description }}</p>
       <div class="Show-Action">
         <button class="Show-details-btn">
           <i class="fa-solid fa-play fa-icon"></i>Play
@@ -14,8 +14,8 @@
         <button class="Show-details-btn">
           <i class="fa-solid fa-plus fa-icon"></i>My List
         </button>
+
       </div>
     </div>
   </div>
 </div>
-

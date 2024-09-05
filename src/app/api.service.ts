@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
-   
 })
 export class ApiService {
   private apiUrl = 'http://localhost:3000';
@@ -17,5 +16,13 @@ export class ApiService {
 
   getShow(id: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/NetflixShows/${id}`);
+  }
+
+  getUsers(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/users`);
+  }
+  addUser(user: any): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<any>(this.apiUrl, user, { headers });
   }
 }
