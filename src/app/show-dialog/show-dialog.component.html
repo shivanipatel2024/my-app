@@ -1,19 +1,103 @@
+<div
+  class="modal fade"
+  id="showModal"
+  tabindex="-1"
+  aria-labelledby="showModalLabel"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-lg modal-fullscreen-md-down modal-dialog-centered"
+  >
+    <div class="modal-content">
+      <div class="modal-content">
+        <div class="d-flex justify-content-end">
+          <!-- <h5 class="modal-title">{{ show?.title }}</h5> -->
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
 
-    <div class="modal fade" id="showDialog" tabindex="-1" aria-labelledby="showDialogLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="showDialogLabel">{{ show.title }}</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+        <div class="modal-body w-100">
+          <div class="trailer-video d-flex justify-content-center">
+            <video
+              (timeupdate)="updateProgress()"
+              (loadedmetadata)="initializeVideo()"
+              #videoPlayer
+              style="height: 80%; width: 80%"
+              [src]="show?.trailerUrl"
+              class=""
+            ></video>
+          </div>
+
+          <div class="time-display">
+            <span>{{ currentTime }}</span> / <span>{{ duration }}</span>
+          </div>
+          <div class="progress-div my-2">
+            <!-- <input type="range" (input)="changeVolume($event)" min="0" max="1" step="0.1" value="1"> -->
+            <input
+              type="range"
+              (input)="seek($event)"
+              [value]="progress"
+              min="0"
+              max="100"
+              step="0.1"
+            />
+          </div>
+          <div class="controls z-1">
+            <button
+              class="btn btn-outline-light mx-1 rounded-circle"
+              (click)="togglePlayPause()"
+            >
+              <i
+                class="fa-solid"
+                [ngClass]="isPlaying ? 'fa-pause' : 'fa-play'"
+              ></i>
+            </button>
+            <button
+              class="btn btn-outline-light mx-1 rounded-circle"
+              (click)="toggleMuteUnMute()"
+            >
+              <i
+                class="fa-solid"
+                [ngClass]="isMute ? 'fa-volume-xmark' : ' fa-volume-off'"
+              ></i>
+            </button>
+            <button class="btn btn-outline-light mx-1 rounded-circle">
+              <i class="fa-solid fa-check"></i>
+            </button>
+            <button class="btn btn-outline-light mx-1 rounded-circle">
+              <i class="fa-regular fa-thumbs-up"></i>
             </button>
           </div>
-          <div class="modal-body">
-            <p>{{ show.description }}</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+          <div class="show-details d-md-flex">
+            <div class="show-detail-desc col-12 col-md-7">
+              <h1>
+                {{ show?.title }}
+              </h1>
+              <div class="imdb-year">
+                <p>IMDb: {{ show?.rating }}</p>
+                <p class="year">{{ show?.year }}</p>
+              </div>
+              <p>{{ show?.description }}</p>
+            </div>
+
+            <div class="show-detail-cast col-12 col-md-5 pt-md-5">
+              <p>Cast: {{ show?.cast }}</p>
+              <p>Genre: {{ show?.category }}</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="">
+  <div>
+    
+  </div>
+</div>

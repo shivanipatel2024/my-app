@@ -1,15 +1,36 @@
 <app-show-details [show]="selectedShow"></app-show-details>
 
 <div class="">
-  <div class="ShowList">
+  <div
+    #showListRef
+    class="ShowList"
+    (mousedown)="handleMouseDown($event)"
+    (mouseleave)="handleMouseUpOrLeave()"
+    (mouseup)="handleMouseUpOrLeave()"
+    (mousemove)="handleMouseMove($event)"
+  >
     <div
       *ngFor="let show of showList"
       class="img_div"
       (click)="selectShow(show)"
-       (mouseenter)="openMovieDialog(show)"
+      (mouseenter)="openModal(show)"
+      (mouseleave)="closeModal()"
     >
       <img src="{{ show.imageUrl }}" alt="{{ show.title }}" class="img_show" />
     </div>
   </div>
 </div>
- <app-show-dialog [show]="modalShow"></app-show-dialog>
+<app-show-dialog [show]="showModal"></app-show-dialog>
+<!-- <div
+  class="modal fade"
+  id="showModal"
+  tabindex="-1"
+  aria-labelledby="showModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <app-show-dialog [show]="showModal"></app-show-dialog>
+    </div>
+  </div>
+</div> -->

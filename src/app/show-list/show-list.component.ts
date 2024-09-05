@@ -3,8 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { ShowDetailsComponent } from '../show-details/show-details.component';
 import { ShowDialogComponent } from '../show-dialog/show-dialog.component';
-import $ from 'jquery';
-
+import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-show-list',
@@ -15,9 +14,7 @@ import $ from 'jquery';
   providers: [HttpClient],
 })
 export class ShowListComponent {
-  // Add a new property for the modal content
-  modalShow: any = null;
-
+  constructor() {}
   showList = [
     {
       id: 1,
@@ -31,7 +28,7 @@ export class ShowListComponent {
       year: 2016,
       rating: 8.7,
       category: 'Horror',
-      trailerUrl: '/Videos/StrangerThings.mp4',
+      trailerUrl: 'Videos/StrangerThings.mp4',
       cast: 'Winona Ryder,Millie Bobby Brown,Finn Wolfhard,Noah Schnapp',
     },
     {
@@ -46,7 +43,7 @@ export class ShowListComponent {
       year: 2023,
       rating: 8.8,
       category: 'Action',
-      trailerUrl: '/Videos/SPIDER_MAN_ INTO _THE _SPIDER_VERSE.mp4',
+      trailerUrl: 'Videos/SPIDER_MAN_ INTO _THE _SPIDER_VERSE.mp4',
       cast: 'Shameik Moore,Hailee Steinfeld,Jake Johnson,Brian Tyree Henry',
     },
     {
@@ -61,7 +58,7 @@ export class ShowListComponent {
       year: 2023,
       rating: 7,
       category: 'Action',
-      trailerUrl: '/Videos/EXTRACTION2.mp4',
+      trailerUrl: 'Videos/EXTRACTION2.mp4',
       cast: 'Chris Hemsworth,Golshifteh Farahani,Adam Bessa,Tornike Gogrichiani,Tornike Bziava',
     },
     {
@@ -240,15 +237,38 @@ export class ShowListComponent {
     this.selectedShow = this.showList[0]; // initialize with the first show
   }
 
-  openMovieDialog(show: any) {
+  showModal: any;
+  openModal(show: any) {
+    this.showModal = show;
     setTimeout(() => {
-      this.modalShow = show;
-      setTimeout(() => {
-        ($('#showModal') as any).modal('show');
-      }, 500); // 500ms delay
-    }, 500); // 500ms delay
+      $('#showModal').modal('show');
+    }, 3000);
   }
 
-  constructor() {}
-}
+  closeModal() {
+    $('#showModal').modal('hide');
+  }
 
+  @ViewChild('showListRef') showListRef!: ElementRef;
+  isDown = false;
+  startX: number = 0;
+  scrollLeft: number = 0;
+
+  handleMouseDown = (e: MouseEvent) => {
+    this.isDown = true;
+    this.startX = e.pageX - this.showListRef.nativeElement.offsetLeft;
+    this.scrollLeft = this.showListRef.nativeElement.scrollLeft;
+  };
+
+  handleMouseUpOrLeave = () => {
+    this.isDown = false;
+  };
+
+  handleMouseMove = (e: MouseEvent) => {
+    if (!this.isDown) return;
+    e.preventDefault();
+    const x = e.pageX - this.showListRef.nativeElement.offsetLeft;
+    const walk = x - this.startX; // Calculate how far the mouse has moved
+    this.showListRef.nativeElement.scrollLeft = this.scrollLeft - walk;
+  };
+}

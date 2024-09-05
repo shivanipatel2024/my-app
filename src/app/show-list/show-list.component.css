@@ -8,6 +8,9 @@
   /* width: 100%; */
   margin-left: 5px;
 }
+.ShowList::-webkit-scrollbar {
+  display: none;
+}
 .img_show {
   height: 300px;
   width: 220pxnt;
