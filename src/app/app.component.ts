@@ -8,6 +8,7 @@ import { ShowListComponent } from './show-list/show-list.component';
 import { UsersComponent } from './users/users.component';
 import { ApiService } from './api.service';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
 
 UsersComponent;
 
@@ -20,6 +21,7 @@ UsersComponent;
     ShowListComponent,
     UsersComponent,
     HttpClientModule,
+    LoginComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
