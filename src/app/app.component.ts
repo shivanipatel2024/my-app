@@ -9,6 +9,8 @@ import { UsersComponent } from './users/users.component';
 import { ApiService } from './api.service';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 UsersComponent;
 
@@ -22,6 +24,8 @@ UsersComponent;
     UsersComponent,
     HttpClientModule,
     LoginComponent,
+    HomeComponent,
+    PageNotFoundComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
