@@ -25,4 +25,7 @@ export class ApiService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<any>(this.apiUrl, user, { headers });
   }
+
+  //private loginUrl = 'https://localhost:7262/Login';
+
 }

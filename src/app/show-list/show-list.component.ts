@@ -40,15 +40,7 @@ export class ShowListComponent {
   closeModal() {
     $('#showModal').modal('hide');
   }
-  // pauseVideo() {
-  //   // Assuming you have a video element in your app-show-dialog component
-  //   const videoElement = document.getElementById(
-  //     'videoPlayer'
-  //   ) as HTMLMediaElement;
-  //   if (videoElement) {
-  //     videoElement.pause();
-  //   }
-  // }
+ 
   @ViewChild('showListRef') showListRef!: ElementRef;
   isDown = false;
   startX: number = 0;

@@ -11,6 +11,8 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { FormsModule } from '@angular/forms';
+import { AuthService } from './auth.service';
 
 UsersComponent;
 
@@ -26,10 +28,11 @@ UsersComponent;
     LoginComponent,
     HomeComponent,
     PageNotFoundComponent,
+    FormsModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  providers: [ApiService, HttpClient],
+  providers: [ApiService, AuthService, HttpClient],
 })
 export class AppComponent {
   title = 'my-app';
