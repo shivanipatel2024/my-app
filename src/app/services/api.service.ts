@@ -26,6 +26,5 @@ export class ApiService {
     return this.http.post<any>(this.apiUrl, user, { headers });
   }
 
-  //private loginUrl = 'https://localhost:7262/Login';
-
+  
 }

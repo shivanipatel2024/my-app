@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -8,10 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   loOut(): any {
-    //console.log('Loout button clicked! ');
-    localStorage.removeItem('jwt_token');
+    this.authService.logout();
   }
 }

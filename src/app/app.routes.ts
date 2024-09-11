@@ -6,11 +6,12 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { authGuard } from './auth.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SignupComponent } from './signup/signup.component';
 export const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-   // canActivate: [authGuard],
+    canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -26,6 +27,12 @@ export const routes: Routes = [
   {
     path: 'Login',
     component: LoginComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'SignUp',
+    component: SignupComponent,
+    pathMatch: 'full',
   },
 
   { path: '**', component: PageNotFoundComponent },

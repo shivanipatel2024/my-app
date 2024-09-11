@@ -1,4 +1,4 @@
-.login_page::before {
+.signup_page::before {
   content: "";
   position: absolute;
   left: 0;
@@ -49,30 +49,7 @@ nav a img {
 form .form-control {
   height: 50px;
 }
-/* .form-wrapper form {
-  margin: 25px 0 65px;
-}
-.form-control input:is(:focus, :valid) {
-  background: #444;
-  padding: 16px 20px 0;
-}
 
-.form-control label {
-  position: absolute;
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1rem;
-  pointer-events: none;
-  color: #8c8c8c;
-  transition: all 0.1s ease;
-}
-
-.form-control input:is(:focus, :valid) ~ label {
-  font-size: 0.75rem;
-  transform: translateY(-130%);
-}
- */
 form button {
   width: 100%;
   padding: 12px 0;
@@ -87,23 +64,9 @@ form button {
   cursor: pointer;
   transition: 0.1s ease;
 }
-/* form button:disabled {
-  width: 100%;
-  padding: 12px 0;
-  font-size: 1rem;
-   background: rgb(229, 9, 20, 0.8);
-  color: #fff;
-  font-weight: 500;
-  border-radius: 4px;
-  border: none;
-  outline: none;
-  margin: 10px 0 10px;
-  cursor: pointer;
-  transition: 0.1s ease;
- 
-} */
-/* form button:hover {
-  background: #c40812;
+/* 
+form button:hover {
+    background: #c40812;
 } */
 
 .form-wrapper a {
@@ -168,10 +131,4 @@ form .form-help :where(label, a) {
   .form-wrapper form {
     margin: 25px 0 40px;
   }
-}
-form[_ngcontent-ng-c673163423] .form-control[_ngcontent-ng-c673163423] {
-  margin-bottom: 5px;
-}
-.form-wrapper[_ngcontent-ng-c3820582012] small[_ngcontent-ng-c3820582012] {
-  margin-top: 5px;
 }

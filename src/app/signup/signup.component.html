@@ -1,0 +1,95 @@
+<div class="signup_page">
+  <nav>
+    <a href="#"><img src="Images/logo.svg" alt="logo" /></a>
+  </nav>
+  <div class="form-wrapper">
+    <h4>Enter an email and password to create an account</h4>
+
+    <form #form="ngForm">
+      <div class="mb-3">
+        <div class="form-control">
+          <input
+            type="email"
+            required
+            name="email"
+            placeholder="Email"
+            pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
+            #email="ngModel"
+            [(ngModel)]="requestSignUpData.email"
+          />
+        </div>
+        <div *ngIf="email.invalid && email.touched" class="error">
+          <div *ngIf="email.errors?.['required']" class="text-danger fs-6">
+            Email is required.
+          </div>
+          <div *ngIf="email.errors?.['pattern']" class="text-danger fs-6">
+            Email is invalid.
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <div class="form-control">
+          <input
+            type="text"
+            required
+            name="Phone"
+            placeholder="Mobile number"
+            pattern="^[0-9]{10}$"
+            #mobileNumber="ngModel"
+            [(ngModel)]="requestSignUpData.mobileNumber"
+          />
+        </div>
+        <div *ngIf="mobileNumber.invalid && mobileNumber.touched" class="error">
+          <div
+            *ngIf="mobileNumber.errors?.['required']"
+            class="text-danger fs-6"
+          >
+            Mobile Number is required.
+          </div>
+          <div
+            *ngIf="mobileNumber.errors?.['pattern']"
+            class="text-danger fs-6"
+          >
+            Mobile Number is invlaid.
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <div class="form-control">
+          <input
+            type="password"
+            name="password"
+            [(ngModel)]="requestSignUpData.password"
+            placeholder="Password"
+            required
+            pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[a-z])(?=.*\W).{7,15}$"
+            #password="ngModel"
+          />
+        </div>
+        <div *ngIf="password.invalid && password.touched" class="error">
+          <div *ngIf="password.errors?.['required']" class="text-danger fs-6">
+            Password is required.
+          </div>
+          <div *ngIf="password.errors?.['pattern']" class="text-danger fs-6">
+            Password must contain 7 to 15 characters and at least one number,
+            one uppercase, one lowercase, and one special character.
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="form.invalid">Create Account</button>
+
+      <div class="form-help">
+        <p><a href="/Login">Sign in</a></p>
+
+        <a href="#">Need help?</a>
+      </div>
+    </form>
+    <small>
+      This page is protected by Google reCAPTCHA to ensure you're not a bot.
+      <a href="#">Learn more.</a>
+    </small>
+  </div>
+</div>
