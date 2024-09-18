@@ -4,12 +4,11 @@ import { Router } from '@angular/router';
 import { loginDataType } from '../types/RequestData.types';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
   providers: [],
@@ -19,11 +18,19 @@ export class LoginComponent {
     userName: '',
     password: '',
   };
+  passwordVisible: boolean = false;
+  isLoading: boolean = false;
+  togglePasswordVisible() {
+    this.passwordVisible = !this.passwordVisible;
+  }
+
   errorMessage: string = '';
   constructor(private authService: AuthService, private router: Router) {}
   onSubmit(): void {
+    this.isLoading = true;
     this.authService.login(this.requestLoginData).subscribe(
       (response) => {
+        this.isLoading = false;
         if (response.isSuccess) {
           this.router.navigate(['/']);
         } else {
@@ -31,6 +38,7 @@ export class LoginComponent {
         }
       },
       (error) => {
+        this.isLoading = false;
         console.error(error);
         this.errorMessage =
           'An error occurred during login. Please try again later.';

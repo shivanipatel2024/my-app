@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-// import { ApiService } from '../api.service';
+import { ApiService } from '../services/api.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -12,10 +12,10 @@ import { CommonModule } from '@angular/common';
 })
 export class UsersComponent {
   users: any = [];
-  constructor() {}
+  constructor(private apiServices: ApiService) {}
   ngOnInit(): void {
-    // this.apiServices.getUsers().subscribe((data) => {
-    //   this.users = data;
-    // });
+    this.apiServices.getUsers().subscribe((data) => {
+      this.users = data;
+    });
   }
 }

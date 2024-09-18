@@ -3,18 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import * as jwt_decode from 'jwt-decode';
-
 import { loginDataType } from './types/RequestData.types';
 import { PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
-// declare var localStorage: Storage;
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'https://localhost:7262/Login';
+  //https://localhost:7262/Auth/LoginUser
+  private apiUrl = 'https://localhost:7262';
   isBrowser: boolean;
 
   constructor(
@@ -26,9 +25,8 @@ export class AuthService {
   }
 
   login(loginData: loginDataType): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/UserLogin`, loginData).pipe(
+    return this.http.post<any>(`${this.apiUrl}/Auth/LoginUser`, loginData).pipe(
       tap((response) => {
-        // console.log('response', response.isSuccess);
         if (this.isBrowser && response.isSuccess) {
           if (response && response.data.token) {
             localStorage.setItem('jwt_token', response.data.token);
@@ -58,11 +56,19 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     const token = this.getToken();
-    // if (token !== null) {
-    //   const decodedToken = jwt_decode.jwtDecode(token);
-    //   console.log('decodedToken', decodedToken);
-    // }
+    if (token) {
+      const decodedToken = this.getDecodedToken();
+      if (decodedToken && decodedToken.exp) {
+        const expirationTime = decodedToken.exp * 1000;
+        const currentTime = Date.now();
 
-    return token !== '';
+        if (currentTime > expirationTime) {
+          this.logout();
+          return false;
+        }
+        return true;
+      }
+    }
+    return false;
   }
 }

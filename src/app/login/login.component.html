@@ -20,7 +20,7 @@
         </div>
         <div *ngIf="userName.invalid && userName.touched" class="error">
           <div *ngIf="userName.errors?.['required']" class="text-danger fs-6">
-            Username is required.
+            Email or mobile number is required.
           </div>
           <div *ngIf="userName.errors?.['pattern']" class="text-danger fs-6">
             Must be a valid email or mobile number (10 digits).
@@ -29,9 +29,9 @@
       </div>
 
       <div class="mb-3">
-        <div class="form-control">
+        <div class="form-control input-container">
           <input
-            type="password"
+            [type]="passwordVisible ? 'text' : 'password'"
             name="password"
             [(ngModel)]="requestLoginData.password"
             placeholder="Password"
@@ -39,7 +39,18 @@
             pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[a-z])(?=.*\W).{7,15}$"
             #password="ngModel"
           />
+          <i
+            class="pass_icon fa-solid"
+            [ngClass]="
+              passwordVisible
+                ? 'fa-eye'
+                : 'fa-eye-slash
+          '
+            "
+            (click)="togglePasswordVisible()"
+          ></i>
         </div>
+
         <div *ngIf="password.invalid && password.touched" class="error">
           <div *ngIf="password.errors?.['required']" class="text-danger fs-6">
             Password is required.
@@ -53,14 +64,17 @@
       <div *ngIf="errorMessage" class="error-message text-danger mb-3">
         {{ errorMessage }}
       </div>
-      <button type="submit" [disabled]="form.invalid">Sign In</button>
+      <button type="submit" [disabled]="form.invalid">
+        <span *ngIf="!isLoading">Sign In</span>
+        <span *ngIf="isLoading">Sign In...</span>
+      </button>
 
       <div class="form-help">
         <div class="remember-me">
           <input type="checkbox" id="remember-me" />
           <label for="remember-me">Remember me</label>
         </div>
-        <a href="#">Need help?</a>
+        <a href="/ForgotPassword">Forgot Password ?</a>
       </div>
     </form>
 
